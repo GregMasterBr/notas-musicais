@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "notas-musicais"
 version = "0.1.0"
-description = ""
+description = "Notas musicais é um CLI para ajudar na formação de escalas, acordes e campos harmônicos"
 authors = ["GregorioQueiroz-at-030282358746 <gregorio.queiroz@facens.br>"]
 readme = "README.md"
 packages = [{include = "notas_musicais"}]
@@ -26,3 +26,19 @@ mkdocstrings-python = "^0.8.3"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = ["--doctest-modules", "-s"]
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.taskipy.tasks]
+lint = "blue --check --diff . && isort --check --diff ."
+docs = "mkdocs serve"
+pre_test = "task lint"
+test = "pytest -s -x --cov=notas_musicais -vv"
+post_test = "coverage html"
