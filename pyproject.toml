@@ -30,7 +30,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.pytest.ini_options]
 pythonpath = "."
 addopts = ["--doctest-modules", "-s"]
-python_files = ["tests.py", "test_*.py", "*_tests.py"]
+python_files = ["tests.py", "*.py", "*_tests.py"]
 
 [tool.isort]
 profile = "black"
